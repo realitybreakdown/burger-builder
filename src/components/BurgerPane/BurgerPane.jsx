@@ -5,7 +5,6 @@ import ClearBurger from '../ClearBurger/ClearBurger';
 class BurgerPane extends React.Component {
     render() {
         var mappedStack = this.props.stack.map(ingredient => <BurgerStack ingredient={ingredient} />)
-        console.log(mappedStack)
         return (
             <div className='component'>
                 BurgerPane

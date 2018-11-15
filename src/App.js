@@ -24,26 +24,38 @@ class App extends Component {
     }
     this.addIngredient = this.addIngredient.bind(this)
     this.removeIngredient = this.removeIngredient.bind(this)
+    this.clearStack = this.clearStack.bind(this);
   }
 
-  addIngredient() {
-    this.setState((state) => {
-       var ingindex = state.ingredients.indexOf(state.ingredients)
-      return {stack: state.stack.push(state.ingredients[{ingindex}])}
+  addIngredient(ingredient) {
+    var bIngredient = this.state.stack;
+    bIngredient.push(ingredient);
+    this.setState({
+      bIngredient: bIngredient
     })
+
+   }
+
+  removeIngredient(ingredient) {
+    var bIngredient = this.state.stack;
+    bIngredient.pop(ingredient);
+    this.setState({
+      bIngredient: bIngredient
+    })
+    
   }
 
-  removeIngredient() {
+  clearStack() {
     this.setState((state) => {
-      return {stack: state.stack.pop()}
+      return {stack: state.stack = []}
     })
   }
 
   render() {
     return (
       <div className="App burger">
-        <IngredientList addIngredient={this.addIngredient} ingredients={this.state.ingredients} />
-        <BurgerPane stack={this.state.stack} ingredients={this.state.ingredients}/>
+        <IngredientList addIngredient={this.addIngredient} handleAdd={this.addIngredient} ingredients={this.state.ingredients} />
+        <BurgerPane stack={this.state.stack} ingredients={this.state.ingredients} clearStack={this.clearStack}/>
       </div>
     );
   }
